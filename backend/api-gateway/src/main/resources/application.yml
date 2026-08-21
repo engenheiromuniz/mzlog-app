@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: ${AUTH_SERVICE_URL:http://localhost:8081}
+          predicates:
+            - Path=/api/auth/**
+        - id: clientes-service
+          uri: ${CLIENTES_SERVICE_URL:http://localhost:8082}
+          predicates:
+            - Path=/api/clientes/**
+        - id: funcionarios-service
+          uri: ${FUNCIONARIOS_SERVICE_URL:http://localhost:8083}
+          predicates:
+            - Path=/api/funcionarios/**
+        - id: entregas-service
+          uri: ${ENTREGAS_SERVICE_URL:http://localhost:8084}
+          predicates:
+            - Path=/api/entregas/**,/api/veiculos/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:4200"
+            allowedMethods: "*"
+            allowedHeaders: "*"

@@ -1,0 +1,42 @@
+<div class="mzlog-page">
+  <div class="dashboard-cards">
+    <mat-card class="dashboard-card">
+      <mat-icon>badge</mat-icon>
+      <div>
+        <span class="card-value">{{ contadores.funcionarios }}</span>
+        <span class="card-label">Funcionarios</span>
+      </div>
+    </mat-card>
+
+    <mat-card class="dashboard-card">
+      <mat-icon>groups</mat-icon>
+      <div>
+        <span class="card-value">{{ contadores.clientes }}</span>
+        <span class="card-label">Clientes</span>
+      </div>
+    </mat-card>
+
+    <mat-card class="dashboard-card">
+      <mat-icon>local_shipping</mat-icon>
+      <div>
+        <span class="card-value">{{ contadores.entregasHoje }}</span>
+        <span class="card-label">Entregas hoje</span>
+      </div>
+    </mat-card>
+
+    <mat-card class="dashboard-card">
+      <mat-icon>directions_bus</mat-icon>
+      <div>
+        <span class="card-value">{{ contadores.veiculos }}</span>
+        <span class="card-label">Veiculos</span>
+      </div>
+    </mat-card>
+  </div>
+
+  <mat-card class="dashboard-map">
+    <div class="map-placeholder">
+      <mat-icon>map</mat-icon>
+      <span>Mapa de entregas (integracao futura)</span>
+    </div>
+  </mat-card>
+</div>

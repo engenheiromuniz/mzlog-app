@@ -1,0 +1,30 @@
+<div class="login-page">
+  <div class="login-overlay"></div>
+
+  <mat-card class="login-card">
+    <img class="login-logo" src="assets/img/logo_mzlog.png" alt="MZLOG" />
+    <h1>MZLOG</h1>
+    <p class="login-subtitle">Acesse o painel administrativo</p>
+
+    <form [formGroup]="form" (ngSubmit)="entrar()">
+      <mat-form-field appearance="outline" class="login-field">
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="username" autocomplete="username" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="login-field">
+        <mat-label>Senha</mat-label>
+        <input matInput type="password" formControlName="password" autocomplete="current-password" />
+      </mat-form-field>
+
+      @if (erro) {
+        <p class="login-erro">{{ erro }}</p>
+      }
+
+      <button mat-raised-button color="primary" class="login-button" type="submit" [disabled]="carregando">
+        <mat-icon>login</mat-icon>
+        Entrar
+      </button>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,58 @@
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.dashboard-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+
+  mat-icon {
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+    color: var(--mzlog-blue);
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--mzlog-blue-dark);
+  }
+
+  .card-label {
+    color: #607d8b;
+    font-size: 13px;
+  }
+}
+
+.dashboard-map {
+  padding: 0;
+  overflow: hidden;
+}
+
+.map-placeholder {
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--mzlog-blue-light);
+  color: var(--mzlog-blue-dark);
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+  }
+}

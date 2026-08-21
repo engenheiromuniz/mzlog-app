@@ -1,0 +1,24 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  h1 {
+    color: var(--mzlog-blue-dark);
+    margin: 0;
+  }
+}
+
+.mzlog-table {
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.empty-state {
+  text-align: center;
+  color: #607d8b;
+  padding: 24px;
+}

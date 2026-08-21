@@ -1,0 +1,119 @@
+networks:
+  mzlog-net:
+    driver: bridge
+
+volumes:
+  clientes-data:
+  funcionarios-data:
+  entregas-data:
+
+services:
+  postgres-clientes:
+    image: postgres:16-alpine
+    container_name: mzlog-postgres-clientes
+    environment:
+      POSTGRES_DB: clientes_db
+      POSTGRES_USER: mzlog
+      POSTGRES_PASSWORD: mzlog
+    volumes:
+      - clientes-data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - mzlog-net
+
+  postgres-funcionarios:
+    image: postgres:16-alpine
+    container_name: mzlog-postgres-funcionarios
+    environment:
+      POSTGRES_DB: funcionarios_db
+      POSTGRES_USER: mzlog
+      POSTGRES_PASSWORD: mzlog
+    volumes:
+      - funcionarios-data:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    networks:
+      - mzlog-net
+
+  postgres-entregas:
+    image: postgres:16-alpine
+    container_name: mzlog-postgres-entregas
+    environment:
+      POSTGRES_DB: entregas_db
+      POSTGRES_USER: mzlog
+      POSTGRES_PASSWORD: mzlog
+    volumes:
+      - entregas-data:/var/lib/postgresql/data
+    ports:
+      - "5435:5432"
+    networks:
+      - mzlog-net
+
+  auth-service:
+    build: ./backend/auth-service
+    container_name: mzlog-auth-service
+    ports:
+      - "8081:8081"
+    networks:
+      - mzlog-net
+
+  clientes-service:
+    build: ./backend/clientes-service
+    container_name: mzlog-clientes-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-clientes:5432/clientes_db
+      SPRING_DATASOURCE_USERNAME: mzlog
+      SPRING_DATASOURCE_PASSWORD: mzlog
+    depends_on:
+      - postgres-clientes
+    ports:
+      - "8082:8082"
+    networks:
+      - mzlog-net
+
+  funcionarios-service:
+    build: ./backend/funcionarios-service
+    container_name: mzlog-funcionarios-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-funcionarios:5432/funcionarios_db
+      SPRING_DATASOURCE_USERNAME: mzlog
+      SPRING_DATASOURCE_PASSWORD: mzlog
+    depends_on:
+      - postgres-funcionarios
+    ports:
+      - "8083:8083"
+    networks:
+      - mzlog-net
+
+  entregas-service:
+    build: ./backend/entregas-service
+    container_name: mzlog-entregas-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-entregas:5432/entregas_db
+      SPRING_DATASOURCE_USERNAME: mzlog
+      SPRING_DATASOURCE_PASSWORD: mzlog
+    depends_on:
+      - postgres-entregas
+    ports:
+      - "8084:8084"
+    networks:
+      - mzlog-net
+
+  api-gateway:
+    build: ./backend/api-gateway
+    container_name: mzlog-api-gateway
+    environment:
+      AUTH_SERVICE_URL: http://auth-service:8081
+      CLIENTES_SERVICE_URL: http://clientes-service:8082
+      FUNCIONARIOS_SERVICE_URL: http://funcionarios-service:8083
+      ENTREGAS_SERVICE_URL: http://entregas-service:8084
+    depends_on:
+      - auth-service
+      - clientes-service
+      - funcionarios-service
+      - entregas-service
+    ports:
+      - "8080:8080"
+    networks:
+      - mzlog-net

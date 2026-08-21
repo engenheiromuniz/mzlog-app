@@ -1,0 +1,45 @@
+<div class="mzlog-page">
+  <div class="page-header">
+    <h1>Clientes</h1>
+    <button mat-raised-button color="primary" (click)="novo()">
+      <mat-icon>add</mat-icon>
+      Novo cliente
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="clientes" class="mzlog-table">
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let c">{{ c.nome }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cidade">
+      <th mat-header-cell *matHeaderCellDef>Cidade</th>
+      <td mat-cell *matCellDef="let c">{{ c.cidade }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="telefone">
+      <th mat-header-cell *matHeaderCellDef>Telefone</th>
+      <td mat-cell *matCellDef="let c">{{ c.telefone }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let c">
+        <button mat-icon-button (click)="editar(c)" aria-label="Editar">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="remover(c)" aria-label="Remover">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+    <tr mat-row *matRowDef="let row; columns: colunas"></tr>
+  </table>
+
+  @if (!carregando && clientes.length === 0) {
+    <p class="empty-state">Nenhum cliente cadastrado.</p>
+  }
+</div>

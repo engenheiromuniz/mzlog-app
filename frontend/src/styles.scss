@@ -1,0 +1,41 @@
+@use '@angular/material' as mat;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --mzlog-blue: #0d47a1;
+  --mzlog-blue-dark: #08316e;
+  --mzlog-blue-light: #e3f2fd;
+  --mzlog-bg: #f4f6fb;
+}
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$blue-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+body {
+  background: var(--mzlog-bg);
+}
+
+.mzlog-page {
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.form-field {
+  width: 100%;
+  display: block;
+  margin-bottom: 4px;
+}
