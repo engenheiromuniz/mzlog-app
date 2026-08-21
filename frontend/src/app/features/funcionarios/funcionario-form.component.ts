@@ -26,6 +26,7 @@ export class FuncionarioFormComponent {
   data = inject<Funcionario | null>(MAT_DIALOG_DATA);
 
   status = ['Ativo', 'Inativo', 'Ferias'];
+  cargos = ['Motorista', 'Despachante', 'Auxiliar de Logistica', 'Administrativo', 'Diretor', 'Admin'];
 
   form = this.fb.nonNullable.group({
     nome: [this.data?.nome ?? '', Validators.required],

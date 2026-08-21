@@ -1,5 +1,6 @@
 package com.mzlog.funcionarios.config;
 
+import com.mzlog.funcionarios.model.CargoFuncionario;
 import com.mzlog.funcionarios.model.Funcionario;
 import com.mzlog.funcionarios.repository.FuncionarioRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -20,13 +21,13 @@ public class DataSeeder implements CommandLineRunner {
             return;
         }
         funcionarioRepository.saveAll(java.util.List.of(
-                funcionario("Carlos Menezes", "Motorista", "Ativo"),
-                funcionario("Fernanda Lima", "Despachante", "Ativo"),
-                funcionario("Joao Pereira", "Auxiliar de Logistica", "Ferias")
+                funcionario("Carlos Menezes", CargoFuncionario.MOTORISTA, "Ativo"),
+                funcionario("Fernanda Lima", CargoFuncionario.DESPACHANTE, "Ativo"),
+                funcionario("Joao Pereira", CargoFuncionario.AUXILIAR_LOGISTICA, "Ferias")
         ));
     }
 
-    private Funcionario funcionario(String nome, String cargo, String status) {
+    private Funcionario funcionario(String nome, CargoFuncionario cargo, String status) {
         Funcionario f = new Funcionario();
         f.setNome(nome);
         f.setCargo(cargo);

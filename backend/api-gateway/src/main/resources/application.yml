@@ -22,7 +22,7 @@ spring:
         - id: entregas-service
           uri: ${ENTREGAS_SERVICE_URL:http://localhost:8084}
           predicates:
-            - Path=/api/entregas/**,/api/veiculos/**
+            - Path=/api/entregas/**,/api/veiculos/**,/api/rotas/**,/api/encomendas/**
       globalcors:
         cors-configurations:
           '[/**]':

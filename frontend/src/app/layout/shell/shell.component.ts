@@ -27,6 +27,9 @@ export class ShellComponent {
   private auth = inject(AuthService);
   private router = inject(Router);
 
+  sessao = this.auth.getSessao();
+  isAdmin = this.auth.isAdmin();
+
   sair(): void {
     this.auth.logout();
     this.router.navigate(['/login']);

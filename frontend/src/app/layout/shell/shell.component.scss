@@ -8,6 +8,14 @@
   color: #fff;
   display: flex;
   flex-direction: column;
+
+  --mdc-list-list-item-label-text-color: #e3f2fd;
+  --mdc-list-list-item-leading-icon-color: #e3f2fd;
+  --mdc-list-list-item-hover-label-text-color: #ffffff;
+  --mdc-list-list-item-hover-leading-icon-color: #ffffff;
+  --mdc-list-list-item-hover-state-layer-color: #ffffff;
+  --mdc-list-list-item-focus-label-text-color: #ffffff;
+  --mdc-list-list-item-focus-state-layer-color: #ffffff;
 }
 
 .shell-brand {
@@ -24,12 +32,28 @@
 }
 
 .shell-sidenav ::ng-deep .mat-mdc-list-item {
-  color: #e3f2fd;
+  color: #e3f2fd !important;
+
+  .mdc-list-item__primary-text,
+  .mat-mdc-list-item-title,
+  .mat-icon {
+    color: inherit !important;
+  }
+
+  &:hover {
+    color: #ffffff !important;
+  }
 }
 
 .shell-sidenav ::ng-deep .active-link {
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff !important;
+
+  .mdc-list-item__primary-text,
+  .mat-mdc-list-item-title,
+  .mat-icon {
+    color: #ffffff !important;
+  }
 }
 
 .shell-toolbar {
@@ -40,4 +64,41 @@
 
 .shell-spacer {
   flex: 1 1 auto;
+}
+
+.shell-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 12px;
+
+  mat-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.shell-user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.shell-user-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.shell-user-role {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.nav-section-label {
+  padding: 16px 16px 4px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
 }

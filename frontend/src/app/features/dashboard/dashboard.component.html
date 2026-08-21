@@ -33,10 +33,47 @@
     </mat-card>
   </div>
 
-  <mat-card class="dashboard-map">
-    <div class="map-placeholder">
-      <mat-icon>map</mat-icon>
-      <span>Mapa de entregas (integracao futura)</span>
-    </div>
+  <mat-card class="dashboard-rotas-card">
+    <button mat-raised-button color="primary" (click)="toggleRotas()">
+      <mat-icon>alt_route</mat-icon>
+      Rotas
+    </button>
+
+    @if (mostrarRotas) {
+      <div class="rotas-painel">
+        <mat-form-field appearance="outline" class="rotas-busca">
+          <mat-label>Pesquisar rota</mat-label>
+          <input matInput [(ngModel)]="filtroRota" placeholder="Origem, destino, motorista ou cliente" />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        @if (carregandoRotas) {
+          <p class="rotas-vazio">Carregando rotas...</p>
+        } @else {
+          <div class="rotas-lista">
+            @for (r of rotasFiltradas; track r.id) {
+              <button
+                type="button"
+                class="rota-item"
+                [class.selecionada]="rotaSelecionada?.id === r.id"
+                (click)="selecionarRota(r)"
+              >
+                <span class="rota-item-trajeto">{{ r.origem }} &rarr; {{ r.destino }}</span>
+                <span class="rota-item-detalhe">
+                  Motorista: {{ r.motoristaNome }} &middot; Cliente: {{ r.clienteNome }}
+                </span>
+              </button>
+            }
+            @if (rotasFiltradas.length === 0) {
+              <p class="rotas-vazio">Nenhuma rota encontrada.</p>
+            }
+          </div>
+        }
+
+        @if (rotaSelecionada) {
+          <app-rota-mapa [origem]="rotaSelecionada.origem" [destino]="rotaSelecionada.destino"></app-rota-mapa>
+        }
+      </div>
+    }
   </mat-card>
 </div>

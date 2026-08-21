@@ -53,6 +53,10 @@ services:
   auth-service:
     build: ./backend/auth-service
     container_name: mzlog-auth-service
+    environment:
+      FUNCIONARIOS_SERVICE_URL: http://funcionarios-service:8083
+    depends_on:
+      - funcionarios-service
     ports:
       - "8081:8081"
     networks:

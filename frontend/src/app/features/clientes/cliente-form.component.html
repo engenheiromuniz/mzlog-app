@@ -7,9 +7,39 @@
       <input matInput formControlName="nome" />
     </mat-form-field>
 
+    <div class="cep-row">
+      <mat-form-field appearance="outline" class="form-field cep-field">
+        <mat-label>CEP</mat-label>
+        <input matInput formControlName="cep" placeholder="00000-000" />
+      </mat-form-field>
+      <button
+        mat-stroked-button
+        type="button"
+        class="cep-button"
+        (click)="buscarCep()"
+        [disabled]="buscandoCep || !form.controls.cep.value"
+      >
+        <mat-icon>search</mat-icon>
+        {{ buscandoCep ? 'Buscando...' : 'Buscar CEP' }}
+      </button>
+    </div>
+    @if (erroCep) {
+      <p class="cep-erro">{{ erroCep }}</p>
+    }
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Endereco</mat-label>
+      <input matInput formControlName="endereco" />
+    </mat-form-field>
+
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Cidade</mat-label>
       <input matInput formControlName="cidade" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Estado</mat-label>
+      <input matInput formControlName="estado" maxlength="2" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="form-field">

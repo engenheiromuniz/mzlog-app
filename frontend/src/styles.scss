@@ -39,3 +39,24 @@ body {
   display: block;
   margin-bottom: 4px;
 }
+
+.cep-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.cep-field {
+  flex: 1 1 auto;
+}
+
+.cep-button {
+  margin-top: 8px;
+  white-space: nowrap;
+}
+
+.cep-erro {
+  color: #c62828;
+  font-size: 12px;
+  margin: -8px 0 12px;
+}

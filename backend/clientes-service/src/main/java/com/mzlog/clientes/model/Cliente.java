@@ -25,7 +25,16 @@ public class Cliente {
     private String nome;
 
     @NotBlank
+    private String cep;
+
+    @NotBlank
+    private String endereco;
+
+    @NotBlank
     private String cidade;
+
+    @NotBlank
+    private String estado;
 
     @NotBlank
     private String telefone;

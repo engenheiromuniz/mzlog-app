@@ -35,24 +35,65 @@
   }
 }
 
-.dashboard-map {
-  padding: 0;
-  overflow: hidden;
+.dashboard-rotas-card {
+  padding: 20px;
 }
 
-.map-placeholder {
-  height: 320px;
+.rotas-painel {
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--mzlog-blue-light);
-  color: var(--mzlog-blue-dark);
+  gap: 16px;
+}
 
-  mat-icon {
-    font-size: 48px;
-    width: 48px;
-    height: 48px;
+.rotas-busca {
+  width: 100%;
+  max-width: 420px;
+}
+
+.rotas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.rota-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 14px;
+  border: 1px solid #dbe4f0;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+
+  &:hover {
+    background: var(--mzlog-blue-light);
   }
+
+  &.selecionada {
+    border-color: var(--mzlog-blue);
+    background: var(--mzlog-blue-light);
+  }
+}
+
+.rota-item-trajeto {
+  font-weight: 600;
+  color: var(--mzlog-blue-dark);
+}
+
+.rota-item-detalhe {
+  font-size: 12px;
+  color: #607d8b;
+}
+
+.rotas-vazio {
+  color: #607d8b;
+  text-align: center;
+  padding: 12px;
 }

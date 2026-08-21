@@ -9,21 +9,40 @@
         <mat-icon matListItemIcon>dashboard</mat-icon>
         <span matListItemTitle>Dashboard</span>
       </a>
-      <a mat-list-item routerLink="/clientes" routerLinkActive="active-link">
-        <mat-icon matListItemIcon>groups</mat-icon>
-        <span matListItemTitle>Clientes</span>
-      </a>
-      <a mat-list-item routerLink="/funcionarios" routerLinkActive="active-link">
-        <mat-icon matListItemIcon>badge</mat-icon>
-        <span matListItemTitle>Funcionarios</span>
-      </a>
+
+      @if (isAdmin) {
+        <div class="nav-section-label">Painel Administrativo</div>
+        <a mat-list-item routerLink="/clientes" routerLinkActive="active-link">
+          <mat-icon matListItemIcon>groups</mat-icon>
+          <span matListItemTitle>Clientes</span>
+        </a>
+        <a mat-list-item routerLink="/funcionarios" routerLinkActive="active-link">
+          <mat-icon matListItemIcon>badge</mat-icon>
+          <span matListItemTitle>Funcionarios</span>
+        </a>
+        <a mat-list-item routerLink="/rotas" routerLinkActive="active-link">
+          <mat-icon matListItemIcon>alt_route</mat-icon>
+          <span matListItemTitle>Rotas</span>
+        </a>
+        <a mat-list-item routerLink="/encomendas" routerLinkActive="active-link">
+          <mat-icon matListItemIcon>inventory_2</mat-icon>
+          <span matListItemTitle>Encomendas</span>
+        </a>
+      }
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <mat-toolbar class="shell-toolbar" color="primary">
-      <span>Painel Administrativo</span>
+      <span>MZLOG</span>
       <span class="shell-spacer"></span>
+      <div class="shell-user">
+        <mat-icon>account_circle</mat-icon>
+        <div class="shell-user-info">
+          <span class="shell-user-name">{{ sessao?.nome }}</span>
+          <span class="shell-user-role">{{ sessao?.cargo }}</span>
+        </div>
+      </div>
       <button mat-icon-button (click)="sair()" aria-label="Sair">
         <mat-icon>logout</mat-icon>
       </button>

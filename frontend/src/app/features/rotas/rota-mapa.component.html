@@ -1,0 +1,10 @@
+<div class="mapa-wrapper">
+  <div #mapaEl class="mapa-elemento"></div>
+
+  @if (carregando) {
+    <div class="mapa-overlay">Carregando mapa da rota...</div>
+  }
+  @if (erro) {
+    <div class="mapa-overlay mapa-erro">{{ erro }}</div>
+  }
+</div>

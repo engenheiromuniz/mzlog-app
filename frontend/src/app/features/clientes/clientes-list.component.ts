@@ -29,7 +29,7 @@ export class ClientesListComponent implements OnInit {
   private snackBar = inject(MatSnackBar);
 
   clientes: Cliente[] = [];
-  colunas = ['nome', 'cidade', 'telefone', 'acoes'];
+  colunas = ['nome', 'cidade', 'estado', 'telefone', 'acoes'];
   carregando = true;
 
   ngOnInit(): void {

@@ -1,0 +1,65 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  h1 {
+    color: var(--mzlog-blue-dark);
+    margin: 0;
+  }
+}
+
+.mzlog-table {
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.empty-state {
+  text-align: center;
+  color: #607d8b;
+  padding: 24px;
+}
+
+.status-badge {
+  display: inline-block;
+  min-width: 110px;
+  padding: 4px 12px;
+  border-radius: 16px;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.planejada {
+  background: #f9a825;
+}
+
+.status-badge.em-andamento {
+  background: #e53935;
+}
+
+.status-badge.concluida {
+  background: #43a047;
+}
+
+.mapa-card {
+  margin-top: 24px;
+  padding: 16px;
+}
+
+.mapa-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+
+  h2 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--mzlog-blue-dark);
+  }
+}
