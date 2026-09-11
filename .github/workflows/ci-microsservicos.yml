@@ -1,4 +1,4 @@
-name: CI Multi-Microsservicos
+name: CI/CD Multi-Microsservicos com Docker
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-test:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,7 +15,7 @@ jobs:
     - name: Copiar codigo do repositorio
       uses: actions/checkout@v4
 
-    # 2. Instala o Java 21 (Versão real do seu projeto!)
+    # 2. Instala o Java 21
     - name: Instalar Java 21
       uses: actions/setup-java@v4
       with:
@@ -23,29 +23,21 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
 
-    # 3. Executa a compilação de todos os microsserviços ignorando testes pesados por enquanto
-    # O parâmetro -DskipTests garante que o Maven apenas cheque a sintaxe e compile as classes
-    - name: Validar API Gateway
+    # 3. Compila todos os microsserviços e gera os arquivos .jar brutos (Fase de CI)
+    - name: Compilar Microsservicos (Gerar JARs)
       run: |
-        cd backend/api-gateway
-        mvn clean package -DskipTests
+        cd backend/api-gateway && mvn clean package -DskipTests
+        cd ../auth-service && mvn clean package -DskipTests
+        cd ../clientes-service && mvn clean package -DskipTests
+        cd ../funcionarios-service && mvn clean package -DskipTests
+        cd ../entregas-service && mvn clean package -DskipTests
 
-    - name: Validar Auth Service
+    # 4. Fase de CD: Constrói as imagens Docker e sobe todos os containers usando o docker-compose
+    # O parâmetro -d faz rodar em segundo plano, e o --wait garante que a esteira espere todos os containers ficarem saudáveis
+    - name: Construir e Levantar Infraestrutura com Docker Compose
       run: |
-        cd backend/auth-service
-        mvn clean package -DskipTests
+        docker compose up --build -d --wait
 
-    - name: Validar Clientes Service
-      run: |
-        cd backend/clientes-service
-        mvn clean package -DskipTests
-
-    - name: Validar Funcionarios Service
-      run: |
-        cd backend/funcionarios-service
-        mvn clean package -DskipTests
-
-    - name: Validar Entregas Service
-      run: |
-        cd backend/entregas-service
-        mvn clean package -DskipTests
+    # 5. Validação visual dos containers ativos (Para vermos no terminal preto se tudo subiu)
+    - name: Listar Containers Ativos
+      run: docker ps
