@@ -9,6 +9,7 @@
 ![Angular](https://img.shields.io/badge/Angular_19-DD0031?style=for-the-badge&logo=angular&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
 
 ![Status](https://img.shields.io/badge/status-em%20evolução-yellow?style=flat-square)
 ![Licença](https://img.shields.io/badge/uso-estudo%2Fportfólio-blue?style=flat-square)
@@ -34,6 +35,8 @@ Sistema de logística migrado para uma arquitetura de **microsserviços** (Java 
 | 🛣️ Rotas (CRUD) | ✅ Funcional (`/api/rotas/**`) |
 | 🗺️ **Mapas** | ✅ **Funcional** — visualização de rotas integrada ao dashboard |
 | 💻 Frontend (Angular) | ✅ Funcional — dashboard, listagens e formulários |
+| 🚀 Integração Contínua (CI) | ✅ **Funcional** — Pipeline automatizado via GitHub Actions validando multi-serviços |
+| 🐳 Entrega Contínua (CD) | ✅ **Funcional** — Orquestração e build de containers via Docker Compose validado em automação |
 | 🧪 Testes automatizados | 🚧 Em desenvolvimento |
 | ☁️ Deploy em nuvem | 🚧 Planejado |
 
@@ -72,6 +75,8 @@ Sistema de logística migrado para uma arquitetura de **microsserviços** (Java 
 ```
 
 ```
+📁 .github/workflows/       🚀 Automação de CI/CD baseada em esteiras virtuais
+
 📁 backend/
  ┣ 📂 api-gateway/          🚪 Spring Cloud Gateway — roteia /api/** para os serviços
  ┣ 📂 auth-service/         🔐 Login com usuário fixo (seed)
@@ -82,6 +87,15 @@ Sistema de logística migrado para uma arquitetura de **microsserviços** (Java 
 📁 frontend/                💻 Angular 19 (standalone components)
 📄 docker-compose.yml       🐳 Orquestra back-end + bancos
 ```
+
+---
+
+## 🚀 Pipeline de CI/CD (GitHub Actions)
+
+O projeto conta com uma esteira automatizada de **Integração Contínua e Entrega Contínua** rodando a cada `push` ou `pull request` na branch `main`:
+
+- **Compilação Multi-Serviço:** a automação cria um ambiente Linux virtual isolado, instala o **Java 21 (Temurin)** e gerencia o build via Maven paralelamente para todas as pastas de microsserviços.
+- **Validação de Infraestrutura:** a esteira simula o ambiente produtivo real disparando o ecossistema completo de containers e redes do Docker Compose de forma agnóstica na nuvem do GitHub, garantindo que o código integrado não gerará quebras no ambiente local dos desenvolvedores.
 
 ---
 
@@ -143,8 +157,9 @@ Antes de rodar, copie as imagens originais (`logo_mzlog.png`, `frota.png`, `frot
 ## 🗺️ Próximos passos
 
 - [x] ~~Integração real de mapa (Leaflet/Google Maps)~~ ✅ concluído
+- [x] ~~Pipeline de CI/CD automatizado multi-serviços via GitHub Actions e Docker Compose~~ ✅ concluído
 - [ ] 🔐 Autenticação com JWT assinado
-- [ ] 🧪 Testes automatizados
+- [ ] 🧪 Testes automatizados (Unitários com JUnit 5)
 - [ ] ☁️ Deploy em ambiente de nuvem
 
 ---
@@ -153,9 +168,9 @@ Antes de rodar, copie as imagens originais (`logo_mzlog.png`, `frota.png`, `frot
 
 Este é meu primeiro sistema desenvolvido com apoio de ferramentas de IA (**Cursor**, **Claude Code**), como parte do meu processo de aprendizado prático em:
 
-- 🏗️ Arquitetura de microsserviços com Spring Boot
+- 🏗️ Arquitetura de microsserviços com Spring Boot e Java 21
 - 💻 Angular com componentes standalone
-- 🐳 Docker e Docker Compose
+- 🐳 Engenharia de Plataformas com Docker, Docker Compose e Automação de Pipelines (CI/CD)
 - 🔍 Revisão crítica de código gerado por IA — todo código sugerido é analisado antes de ser aceito, buscando entender o que foi implementado e por quê.
 
 ---
