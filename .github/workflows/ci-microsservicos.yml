@@ -1,0 +1,54 @@
+name: CI Multi-Microsservicos
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Baixa o código do mzlog-app na máquina virtual
+    - name: Copiar codigo do repositorio
+      uses: actions/checkout@v4
+
+    # 2. Instala o Java 17 (versão indicada no seu README)
+    - name: Instalar Java 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    # 3. Testa e Compila o API Gateway
+    - name: Validar API Gateway
+      run: |
+        cd backend/api-gateway
+        mvn clean package
+
+    # 4. Testa e Compila o Auth Service
+    - name: Validar Auth Service
+      run: |
+        cd backend/auth-service
+        mvn clean package
+
+    # 5. Testa e Compila o Clientes Service
+    - name: Validar Clientes Service
+      run: |
+        cd backend/clientes-service
+        mvn clean package
+
+    # 6. Testa e Compila o Funcionarios Service
+    - name: Validar Funcionarios Service
+      run: |
+        cd backend/funcionarios-service
+        mvn clean package
+
+    # 7. Testa e Compila o Entregas Service
+    - name: Validar Entregas Service
+      run: |
+        cd backend/entregas-service
+        mvn clean package
